@@ -2,13 +2,12 @@ doctype html
 html
     head
         title= "Wizard's Chess"
-        script(src='http://192.168.1.103:8080/js/chat.js')
-        script(src='http://192.168.1.103:8080/socket.io/socket.io.js')
-        link(rel='stylesheet', href='http://192.168.1.103:8080/css/chessboard-0.3.0.min.css')
+        script(src='/socket.io/socket.io.js')
+        link(rel='stylesheet', href='/css/chessboard-0.3.0.min.css')
         script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js')
-        script(src='http://192.168.1.103:8080/js/chessboard-0.3.0.min.js')
-        script(src='http://192.168.1.103:8080/js/chess.min.js')
+        script(src='/js/chessboard-0.3.0.min.js')
+        script(src='/js/chess.min.js')
 
     body
-        #board(style='width:600px') 
-        script(src='http://192.168.1.103:8080/js/chessapp.js')
+        #board(style='width:600px')
+        script(src='/js/chessapp.js')
