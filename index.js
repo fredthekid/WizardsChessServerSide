@@ -20,14 +20,10 @@ app.get("/", function(req, res){
 app.use(express.static(__dirname + '/public'));
 var io = require('socket.io').listen(server);
 server.listen(port);
-var lastMessage = '';
 var currentfen = '';
 
 io.sockets.on('connection', function(socket){
     socket.emit('message', {message: 'Welcome to Wizards Chess!'});
-    if(lastMessage != ''){
-        socket.emit('message', lastMessage);
-    }
 
     if(currentfen != ''){
         socket.emit('updateBoard', currentfen);
