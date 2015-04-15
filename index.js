@@ -20,14 +20,11 @@ app.get("/", function(req, res){
 app.use(express.static(__dirname + '/public'));
 var io = require('socket.io').listen(server);
 server.listen(port);
-var currentfen = '';
+var currentfen = 'start';
 
 io.sockets.on('connection', function(socket){
-    socket.emit('message', {message: 'Welcome to Wizards Chess!'});
-
-    if(currentfen != ''){
-        socket.emit('updateBoard', currentfen);
-    }
+    socket.emit('initBoard', currentfen);
+    console.log(currentfen);
 
     socket.on('send', function(data){
         io.sockets.emit('message', data);
@@ -35,11 +32,11 @@ io.sockets.on('connection', function(socket){
         console.log(lastMessage);
     });
 
-    socket.on('updateBoardFromClient', function(data){
-        io.sockets.emit('updateBoard',data);
+    socket.on('clientUpdateRequest', function(data){
         currentfen = data;
+        socket.broadcast.emit('updateGameFromServer',currentfen);
         console.log(data);
     });
 });
 
-console.log("listening on port " + port);
+console.log("Listening on port: " + port);

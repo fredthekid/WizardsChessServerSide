@@ -5,7 +5,7 @@
 window.onload = function(){
     var socket = io.connect('http://localhost:8080');
     var board, game = new Chess();
-    var currentfen = 'start';
+    var clientfen = 'start';
 
     // do not pick up pieces if the game is over
     // only pick up pieces for White
@@ -18,7 +18,6 @@ window.onload = function(){
     };
 
     var onDrop = function(source, target, piece, newPos, oldPos, orientation) {
-
         // see if the move is legal
         var move = game.move({
             from: source,
@@ -39,31 +38,41 @@ window.onload = function(){
 
         var randomIndex = Math.floor(Math.random() * possibleMoves.length);
         game.move(possibleMoves[randomIndex]);
-        board.position(game.fen());
+        updateServerGame();
     };
 
     // update the board position after the piece snap
     // for castling, en passant, pawn promotion
     var onSnapEnd = function() {
-        board.position(game.fen());
-        console.log(game.fen());
+        updateServerGame();
     };
 
-    var onChange = function(){
-        socket.emit('updateBoardFromClient',game.fen());
-    }
+    //only updates clients game, not server
+    function updateClientGame(updateFen){
+        clientfen = updateFen;
+        game.load(clientfen);
+        board.position(clientfen);
+    };
 
-    socket.on('updateBoard',function(data){
-        board.position(data);
+    //updates client game as well
+    function updateServerGame(){
+        updateClientGame(game.fen());
+        socket.emit('clientUpdateRequest', clientfen);
+    };
+
+    socket.on('updateGameFromServer',function(data){
+        updateClientGame(data);
     });
 
-    var cfg = {
-        draggable: true,
-        position: 'start',
-        onDragStart: onDragStart,
-        onDrop: onDrop,
-        onSnapEnd: onSnapEnd,
-        onChange: onChange
-    };
-    board = new ChessBoard('board', cfg);
+    socket.on('initBoard', function(data){
+        var cfg = {
+            draggable: true,
+            position: 'start',
+            onDragStart: onDragStart,
+            onDrop: onDrop,
+            onSnapEnd: onSnapEnd
+        };
+        board = new ChessBoard('board', cfg);
+        updateClientGame(data);    
+    });
 }
