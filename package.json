@@ -7,8 +7,8 @@
         "express" : "4.12.3",
         "jade": "1.9.2"
     },
-    "private": "true",
-    "author": "Fred Sun"
+    "private": true,
+    "author": "Fred Sun & Gerry Ramos"
 }
 
 
