@@ -1,0 +1,73 @@
+@font-face {
+	font-family: "caviar-dreams";
+	font-style: normal;
+	font-weight: normal;
+	src: url('../fonts/CaviarDreams.ttf');
+}
+
+h1 {
+	font-family: "caviar-dreams";
+}
+
+.btn{
+	display:inline-block;
+	padding:10px 30px;
+	margin-bottom:0;
+	font-size:50px;
+	line-height:1.428571429;
+	white-space:nowrap;
+	vertical-align:middle;
+	text-align:center;
+	letter-spacing:2px;
+	color:#555;
+	cursor:pointer;
+	background-color:transparent;
+	border:2px solid #666;
+	border-radius:0;
+	-webkit-user-select:none;
+	-moz-user-select:none;
+	-ms-user-select:none;
+	-o-user-select:none;
+	user-select:none;
+	transition-property:all;
+	transition-duration:.2s;
+	-webkit-transition-property:all;
+	-webkit-transition-duration:.2s;
+	font-family: "caviar-dreams";
+	font-weight:normal
+}
+
+.btn:focus{
+	outline:none;
+	outline-offset:0
+}
+
+.btn:hover,.btn:focus{
+	color:#fff;
+	text-decoration:none;
+	background-color:#735768;
+	border-color:#735768
+}
+
+.btn:active,.btn .active{
+	background-image:none;
+	outline:0;
+	-webkit-box-shadow:none;
+	box-shadow:none
+}
+
+.btn-light{
+	color:#fff;
+	background-color:transparent;
+	border-color:#fff
+}
+
+.btn-light:hover,.btn-light:focus,.btn-light:active,.btn-light .active{
+	color:#555;
+	background-color:#fff;
+	border-color:#fff
+}
+
+.btn-light:active,.btn-light .active{
+	background-image:none
+}
