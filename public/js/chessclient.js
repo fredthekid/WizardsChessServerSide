@@ -3,7 +3,7 @@
  */
 
 window.onload = function(){
-    var socket = io.connect('http://10.189.17.234:8080');
+    var socket = io.connect('http://localhost:8080');
     var board, game = new Chess();
     var clientfen = 'start';
 
