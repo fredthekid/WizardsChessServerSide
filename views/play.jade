@@ -1,5 +1,22 @@
 extends page
 block party
-    body
-        #board(style='width:500px; left-margin: auto; right-margin:auto')
+  body(style="background-image: url(''); background-size: cover;")
+    .container
+      .row
+      .span12
+        #play-buttons.btn-toolbar(role='toolbar')
+          button.btn.btn-default(type='button', style='font-size: 10px;') NEW GAME
+          button.btn.btn-default(type='button', style='font-size: 10px;') FORFEIT
+          button.btn.btn-default(type='button', style='font-size: 10px;') SWITCH COLOR
+    .container-fluid
+      .row
+      .span12
+        #board.center-block(style='width: 425px')
         script(src='/js/chessclient.js')
+    .container
+      .row
+      .span12
+        #play-buttons.btn-toolbar(role='toolbar')
+          button.btn.btn-default(type='button', style='font-size: 10px;' onclick="loadhome()") HOME
+          button.btn.btn-default(type='button', style='font-size: 10px;') ABOUT
+  script(src='/js/redir.js')

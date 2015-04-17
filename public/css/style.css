@@ -13,6 +13,11 @@
 	font-weight: normal;
 	src: url('http://www.montere.it/assets/fonts/brandon-grotesque/brandon_bld-webfont.woff');
 }
+.center {
+     float: none;
+     margin-left: auto;
+     margin-right: auto;
+}
 
 .divider{
     width:2px;
@@ -24,8 +29,30 @@ h1 {
 	font-family: "brandon-grotesquebold";
 }
 
+#play-buttons{
+	font-size: 10px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	text-align:center;	
+}
+
 #home-body{
 	background-image: url('../img/harrypotter.gif');
+	background-size: cover;
+}
+
+.center-block {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.element {
+  .center-block();
+}
+
+#play-body{
+	background-image: url('./emmawatsondevil.jpg');
 	background-size: cover;
 }
 
@@ -65,7 +92,7 @@ h1 {
 	-webkit-transition-property:all;
 	-webkit-transition-duration:.2s;
 	font-family: "brandon-grotesque";
-	font-weight:normal
+	font-weight:normal;
 }
 
 .btn:focus{
