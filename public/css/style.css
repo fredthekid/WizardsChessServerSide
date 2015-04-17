@@ -1,19 +1,48 @@
 @font-face {
-	font-family: "caviar-dreams";
+	font-family: "brandon-grotesque";
 	font-style: normal;
 	font-weight: normal;
-	src: url('../fonts/CaviarDreams.ttf');
+	src: url('http://www.montere.it/assets/fonts/brandon-grotesque/brandon_blk-webfont.woff');
+}
+
+@font-face {
+	font-family: "brandon-grotesquebold";
+	font-style: normal;
+	font-weight: normal;
+	src: url('http://www.montere.it/assets/fonts/brandon-grotesque/brandon_bld-webfont.woff');
+}
+
+.divider{
+    width:2px;
+    height:auto;
+    display:inline-block;
 }
 
 h1 {
-	font-family: "caviar-dreams";
+	font-family: "brandon-grotesquebold";
+}
+
+#home-body{
+	background-image: url('../img/harrypotter.gif');
+	background-size: cover;
+}
+
+#jumboedit{
+    padding-top: 75px;
+    background: transparent;
+}
+
+.jumbotron h1{
+    color: white;
+    font-size: 100px;
+    padding-bottom: 50px;
 }
 
 .btn{
 	display:inline-block;
 	padding:10px 30px;
 	margin-bottom:0;
-	font-size:50px;
+	font-size:30px;
 	line-height:1.428571429;
 	white-space:nowrap;
 	vertical-align:middle;
@@ -33,7 +62,7 @@ h1 {
 	transition-duration:.2s;
 	-webkit-transition-property:all;
 	-webkit-transition-duration:.2s;
-	font-family: "caviar-dreams";
+	font-family: "brandon-grotesque";
 	font-weight:normal
 }
 

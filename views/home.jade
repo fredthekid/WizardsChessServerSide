@@ -1,5 +1,11 @@
 extends page
-
 block party
-    #board(style='width:500px; left-margin: auto; right-margin:auto')
-    script(src='/js/chessclient.js')
+  body#home-body
+    .container.text-center
+      #jumboedit.jumbotron.vertical-center
+        h1(style="font-size: 100px; color: 'white'") WELCOME TO WIZARD'S CHESS
+        p
+          a.btn.btn-light(type='button', role='button', onclick="loadplay()") PLAY CHESS
+          .divider
+          a.btn.btn-light(role='button') ABOUT
+  script(src='/js/redir.js')
