@@ -5,9 +5,8 @@ block party
       .row
       .span12
         #play-buttons.btn-toolbar(role='toolbar')
-          button.btn.btn-default(type='button', style='font-size: 10px;') NEW GAME
-          button.btn.btn-default(type='button', style='font-size: 10px;') FORFEIT
-          button.btn.btn-default(type='button', style='font-size: 10px;') SWITCH COLOR
+          button.btn.btn-default(type='button', style='font-size: 10px;' onclick="loadhome()") HOME
+          button.btn.btn-default(type='button', style='font-size: 10px;') ABOUT
     .container-fluid
       .row
       .span12
@@ -17,6 +16,7 @@ block party
       .row
       .span12
         #play-buttons.btn-toolbar(role='toolbar')
-          button.btn.btn-default(type='button', style='font-size: 10px;' onclick="loadhome()") HOME
-          button.btn.btn-default(type='button', style='font-size: 10px;') ABOUT
+          button.btn.btn-default(type='button', style='font-size: 10px;') NEW GAME
+          button.btn.btn-default(type='button', style='font-size: 10px;') FORFEIT
+          button.btn.btn-default(type='button', style='font-size: 10px;') SWITCH COLOR
   script(src='/js/redir.js')

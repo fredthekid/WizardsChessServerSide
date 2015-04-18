@@ -3,9 +3,8 @@ block party
   body#home-body
     .container.text-center
       #homepagejumbo.jumbotron.vertical-center
-        h1(style="font-size: 100px; color: 'white'") WELCOME TO WIZARD'S CHESS
-        p
-          .btn-toolbar
-            a.btn.btn-light(type='button', role='button', onclick="loadplay()") PLAY CHESS
-            a.btn.btn-light(role='button') ABOUT
+        h1(style="font-size: 100px;") WELCOME TO WIZARD'S CHESS
+        .btn-toolbar
+          button.btn.btn-light(type='button', role='button', onclick="loadplay()") PLAY CHESS
+          button.btn.btn-light(type='button') ABOUT
   script(src='/js/redir.js')
