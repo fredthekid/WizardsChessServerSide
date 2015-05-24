@@ -1,22 +1,36 @@
 /*
  * This is the client-side code
  */
-
 window.onload = function(){
-    var socket = io.connect('http://10.189.18.64:8080');
+    var socket = io.connect('http://192.168.1.116:3030');
     var board, game = new Chess();
     var clientfen = 'start';
 
     // do not pick up pieces if the game is over
     // only pick up pieces for White
 
+	
+	//Old DragStart
+	/*
     var onDragStart = function(source, piece, position, orientation) {
         if (game.in_checkmate() === true || game.in_draw() === true ||
                 piece.search(/^b/) !== -1) {
             return false;
         }
     };
+	*/
+	
+	//New DragStart
+	var onDragStart = function(source, piece, position, orientation) {
+	  if (game.game_over() === true ||
+		  (game.turn() === 'w' && piece.search(/^b/) !== -1) ||
+		  (game.turn() === 'b' && piece.search(/^w/) !== -1)) {
+		return false;
+	  }
+	};
 
+	/*
+	//Old onDrop
     var onDrop = function(source, target, piece, newPos, oldPos, orientation) {
         // see if the move is legal
         var move = game.move({
@@ -30,7 +44,26 @@ window.onload = function(){
         // make random legal move for black
         window.setTimeout(makeRandomMove, 250);
     };
+	*/
+	
+	var onDrop = function(source, target) {
+	  // see if the move is legal
+	  var move = game.move({
+		from: source,
+		to: target,
+		promotion: 'q' // NOTE: always promote to a queen for example simplicity
+	  });
 
+	  // illegal move
+	  if (move === null) return 'snapback';
+
+	  
+	  //may need to use this function later, take it out for now
+	  //updateStatus();
+	};
+
+	/*
+	//this is used with the older code
     var makeRandomMove = function() {
         var possibleMoves = game.moves();
         // game over
@@ -38,14 +71,55 @@ window.onload = function(){
 
         var randomIndex = Math.floor(Math.random() * possibleMoves.length);
         game.move(possibleMoves[randomIndex]);
-        updateServerGame();
+		updateServerGame();
     };
+	*/
 
     // update the board position after the piece snap
     // for castling, en passant, pawn promotion
     var onSnapEnd = function() {
         updateServerGame();
+		
+		//may need to use this function later, take it out for now
+		//board.position(game.fen());
     };
+	
+	
+	//use for later
+	/*
+	var updateStatus = function() {
+	  var status = '';
+
+	  var moveColor = 'White';
+	  if (game.turn() === 'b') {
+		moveColor = 'Black';
+	  }
+
+	  // checkmate?
+	  if (game.in_checkmate() === true) {
+		status = 'Game over, ' + moveColor + ' is in checkmate.';
+	  }
+
+	  // draw?
+	  else if (game.in_draw() === true) {
+		status = 'Game over, drawn position';
+	  }
+
+	  // game still on
+	  else {
+		status = moveColor + ' to move';
+
+		// check?
+		if (game.in_check() === true) {
+		  status += ', ' + moveColor + ' is in check';
+		}
+	  }
+
+	  statusEl.html(status);
+	  fenEl.html(game.fen());
+	  pgnEl.html(game.pgn());
+	};
+	*/
 
     //only updates clients game, not server
     function updateClientGame(updateFen){
@@ -54,7 +128,7 @@ window.onload = function(){
         board.position(clientfen);
     };
 
-    //updates client game as well
+    //updates server game as well
     function updateServerGame(){
         updateClientGame(game.fen());
         socket.emit('clientUpdateRequest', clientfen);
