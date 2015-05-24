@@ -1,5 +1,7 @@
 var io = null;
 var currentfen = 'start'
+var sp = require("serialport").SerialPort;
+var ser = new sp("/dev/ttyO4", {baudrate: 9600});
 
 exports.setRoute = function(ioVar){
     io = ioVar;
@@ -17,6 +19,7 @@ exports.setRoute = function(ioVar){
             currentfen = data;
             socket.broadcast.emit('updateGameFromServer',currentfen);
             console.log(data);
+            ser.write('A');
         });
     });
 };
