@@ -15,11 +15,36 @@ exports.setRoute = function(ioVar){
             console.log(lastMessage);
         });
 
-        socket.on('clientUpdateRequest', function(data){
+        socket.on('clientUpdateRequest', function(data,last){
             currentfen = data;
+            var lm = last;
+            var cap = lm['captured'];
             socket.broadcast.emit('updateGameFromServer',currentfen);
-            console.log(data);
-            ser.write('A');
+            //console.log(data);
+            
+            if(cap == undefined) //no piece was captured, just a normal move
+            {
+	      //Move
+              ser.write('M');
+              ser.write(lm['from']);
+              ser.write(lm['to']);
+	      //ser.write('\n');
+            }
+    
+            else
+            {
+              //Kill
+              ser.write('K');
+              ser.write(lm['captured']);
+              ser.write(lm['color']);
+              ser.write(lm['to']);
+              //ser.write('\n');       
+              //Move
+              ser.write('M');
+              ser.write(lm['from']);
+              ser.write(lm['to']);
+              //ser.write('\n');
+            }
         });
     });
 };

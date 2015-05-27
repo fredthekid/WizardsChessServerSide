@@ -12,7 +12,7 @@ var app = express(),
     io = socket.listen(server);
 
 //set express settings
-app.set('port', process.env.PORT || 8080);
+app.set('port', process.env.PORT || 3030);
 app.set('views', __dirname + '/views');
 app.set('view engine', "jade");
 app.engine('jade', jade.__express);

@@ -1,10 +1,12 @@
 /*
- * This is the client-side code
+ * this is the client-side code
  */
 window.onload = function(){
-    var socket = io.connect('http://192.168.1.116:3030');
+    var socket = io.connect('192.168.1.136:3030');
     var board, game = new Chess();
     var clientfen = 'start';
+    var lastMove;
+	
 
     // do not pick up pieces if the game is over
     // only pick up pieces for White
@@ -53,11 +55,10 @@ window.onload = function(){
 		to: target,
 		promotion: 'q' // NOTE: always promote to a queen for example simplicity
 	  });
-
+	  lastMove = move;
 	  // illegal move
 	  if (move === null) return 'snapback';
 
-	  
 	  //may need to use this function later, take it out for now
 	  //updateStatus();
 	};
@@ -131,7 +132,7 @@ window.onload = function(){
     //updates server game as well
     function updateServerGame(){
         updateClientGame(game.fen());
-        socket.emit('clientUpdateRequest', clientfen);
+        socket.emit('clientUpdateRequest', clientfen, lastMove);
     };
 
     socket.on('updateGameFromServer',function(data){
