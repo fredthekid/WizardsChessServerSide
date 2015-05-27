@@ -27,50 +27,11 @@ window.onload = function(){
 	  // illegal move
 	  if (move === null) return 'snapback';
 
-	  //may need to use this function later, take it out for now
-	  //updateStatus();
 	};
 
     var onSnapEnd = function() {
         updateServerGame();
     };
-	
-	
-	//use for later
-	/*
-	var updateStatus = function() {
-	  var status = '';
-
-	  var moveColor = 'White';
-	  if (game.turn() === 'b') {
-		moveColor = 'Black';
-	  }
-
-	  // checkmate?
-	  if (game.in_checkmate() === true) {
-		status = 'Game over, ' + moveColor + ' is in checkmate.';
-	  }
-
-	  // draw?
-	  else if (game.in_draw() === true) {
-		status = 'Game over, drawn position';
-	  }
-
-	  // game still on
-	  else {
-		status = moveColor + ' to move';
-
-		// check?
-		if (game.in_check() === true) {
-		  status += ', ' + moveColor + ' is in check';
-		}
-	  }
-
-	  statusEl.html(status);
-	  fenEl.html(game.fen());
-	  pgnEl.html(game.pgn());
-	};
-	*/
 
     //only updates clients game, not server
     function updateClientGame(updateFen){
