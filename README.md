@@ -1,4 +1,4 @@
-# chess
+# Wizards Chess
 cmpe244 chess web application with node.js, express, and socket.io.
 Made to work with the BeagleBone Black
 
